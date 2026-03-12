@@ -1,0 +1,4 @@
+packages:
+  "framer-motion": "For smooth entry animations and scroll-triggered visual effects"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility to merge tailwind classes safely"
