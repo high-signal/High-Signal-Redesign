@@ -180,7 +180,7 @@ function Solution() {
             <span className="text-primary">Infinite signal.</span>
           </h2>
           <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-            We aggregate fragmented identity data across social platforms, forums, and on-chain activity to build a unified, Sybil-resistant reputation graph.
+            We aggregate disparate data sources across social platforms, forums, and on-chain activity to build a unified, Sybil-resistant reputation score, using AI sentiment analysis
           </p>
           <ul className="space-y-4">
             {['Identify true contributors automatically', 'Filter out airdrop farmers and bots', 'Deploy targeted, high-ROI incentives'].map((item, i) => (
