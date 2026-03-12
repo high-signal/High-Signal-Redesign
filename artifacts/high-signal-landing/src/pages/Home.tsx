@@ -6,6 +6,7 @@ import {
   CheckCircle2
 } from "lucide-react";
 import FlowDiagram from "../components/FlowDiagram";
+import SignalShowcase from "../components/SignalShowcase";
 
 // --- Custom UI Components for landing page ---
 const Section = ({ id, children, className = "" }: { id?: string, children: React.ReactNode, className?: string }) => (
@@ -348,6 +349,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <SignalShowcase />
         <Problem />
         <Solution />
         <Benefits />
