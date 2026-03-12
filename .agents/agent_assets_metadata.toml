@@ -12,3 +12,9 @@ id = "oCXxhf9g_1z1H7y8wtwCr"
 uri = "file://attached_assets/generated_images/highsignal-twitter-header-v2.png"
 type = "image"
 title = "High Signal — Twitter/X Header v2"
+
+[[outputs]]
+id = "S8KhaDm2xg_i9rWqT8yYt"
+uri = "file://attached_assets/generated_images/highsignal-twitter-header-crisp.png"
+type = "image"
+title = "High Signal — X/Twitter Header (1500×500)"
