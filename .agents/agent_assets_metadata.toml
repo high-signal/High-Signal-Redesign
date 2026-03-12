@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "NubquUN3Se98N2tHy2k_4"
+uri = "file://attached_assets/generated_images/highsignal-twitter-header.png"
+type = "image"
+title = "High Signal — Twitter/X Header"
