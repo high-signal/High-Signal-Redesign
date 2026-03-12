@@ -5,6 +5,7 @@ import {
   Vote, 
   CheckCircle2
 } from "lucide-react";
+import ChipEngineGraphic from "../components/ChipEngineGraphic";
 
 // --- Custom UI Components for landing page ---
 const Section = ({ id, children, className = "" }: { id?: string, children: React.ReactNode, className?: string }) => (
@@ -233,13 +234,10 @@ function Solution() {
               </div>
             </div>
 
-            {/* Middle Column: Engine */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-primary/20 blur-[30px] rounded-full" />
-              <div className="bg-[#0A1020] border border-primary/50 p-6 rounded-xl text-center shadow-[0_0_30px_rgba(0,229,255,0.15)] w-40 relative z-10">
-                <img src="/logo.png" alt="High Signal" className="w-8 h-8 object-contain mx-auto mb-3" />
-                <span className="font-bold text-white text-sm">High Signal Engine</span>
-              </div>
+            {/* Middle Column: Engine — chip graphic */}
+            <div className="relative flex items-center justify-center">
+              <div className="absolute inset-0 bg-primary/15 blur-[40px] rounded-full" />
+              <ChipEngineGraphic className="relative z-10 w-52 h-52 drop-shadow-[0_0_30px_rgba(6,182,212,0.35)]" />
             </div>
 
             {/* Right Column: Output */}
