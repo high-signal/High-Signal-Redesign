@@ -3,10 +3,7 @@ import {
   Bot, 
   Coins, 
   Vote, 
-  MessageSquare, 
-  Share2, 
-  CheckCircle2, 
-  Network
+  CheckCircle2
 } from "lucide-react";
 
 // --- Custom UI Components for landing page ---
@@ -219,7 +216,7 @@ function Solution() {
                 <img src="/x-logo.png" alt="X" className="h-4 w-auto" style={{mixBlendMode: 'screen'}} /> Twitter
               </div>
               <div className="bg-card border border-border p-3 rounded-lg text-center shadow-lg text-sm text-white flex items-center justify-center gap-2">
-                <Network className="w-4 h-4 text-primary" /> On-chain
+                <img src="/discourse-logo.png" alt="Discourse" className="h-4 w-auto" style={{mixBlendMode: 'screen'}} /> Forum
               </div>
             </div>
 
