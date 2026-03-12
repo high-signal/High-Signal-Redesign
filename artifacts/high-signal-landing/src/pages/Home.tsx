@@ -191,59 +191,85 @@ function Solution() {
         </motion.div>
 
         {/* Visual Architecture Diagram */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative h-[400px] w-full rounded-xl border border-border bg-[#050810] p-6 shadow-2xl flex items-center justify-center"
+          className="relative w-full rounded-xl border border-border bg-[#050810] shadow-2xl overflow-hidden"
         >
-          {/* Connecting SVG lines — hero-style teal dashed flow */}
-          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            {/* Left: source cards → engine */}
-            <path d="M 128 120 C 205 120, 205 200, 278 200" fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
-            <path d="M 128 200 L 278 200"                   fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
-            <path d="M 128 280 C 205 280, 205 200, 278 200" fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
+          {/* ── DESKTOP layout (md+) ── */}
+          <div className="hidden md:block relative h-[400px] w-full p-6">
+            {/* Connecting SVG lines */}
+            <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 128 120 C 205 120, 205 200, 278 200" fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
+              <path d="M 128 200 L 278 200"                   fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
+              <path d="M 128 280 C 205 280, 205 200, 278 200" fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
+              <path d="M 442 200 L 505 200"                   fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
+              <circle cx="128" cy="120" r="4" fill="#06B6D4" opacity="0.9"/>
+              <circle cx="128" cy="200" r="4" fill="#06B6D4" opacity="0.9"/>
+              <circle cx="128" cy="280" r="4" fill="#06B6D4" opacity="0.9"/>
+              <circle cx="278" cy="200" r="5" fill="#06B6D4" opacity="0.95"/>
+              <circle cx="505" cy="200" r="4" fill="#06B6D4" opacity="0.9"/>
+            </svg>
 
-            {/* Right: engine → score */}
-            <path d="M 442 200 L 505 200" fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
-
-            {/* Glowing dots at source endpoints */}
-            <circle cx="128" cy="120" r="4" fill="#06B6D4" opacity="0.9"/>
-            <circle cx="128" cy="200" r="4" fill="#06B6D4" opacity="0.9"/>
-            <circle cx="128" cy="280" r="4" fill="#06B6D4" opacity="0.9"/>
-
-            {/* Convergence dot at engine input */}
-            <circle cx="278" cy="200" r="5" fill="#06B6D4" opacity="0.95"/>
-
-            {/* Dot at score input */}
-            <circle cx="505" cy="200" r="4" fill="#06B6D4" opacity="0.9"/>
-          </svg>
-
-          <div className="relative w-full h-full flex items-center justify-between z-10">
-            {/* Left Column: Data Sources */}
-            <div className="flex flex-col gap-6 w-32">
-              <div className="bg-card border border-border p-3 rounded-lg text-center shadow-lg text-sm text-white flex items-center justify-center gap-2">
-                <img src="/discord-logo.png" alt="Discord" className="h-4 w-auto" /> Discord
+            <div className="relative w-full h-full flex items-center justify-between z-10">
+              {/* Left: Data Sources */}
+              <div className="flex flex-col gap-6 w-32">
+                {[
+                  { src: "/discord-logo.png", label: "Discord" },
+                  { src: "/x-logo.png",       label: "Twitter" },
+                  { src: "/discourse-logo.png",label: "Forum"   },
+                ].map(({ src, label }) => (
+                  <div key={label} className="bg-card border border-border p-3 rounded-lg text-center shadow-lg text-sm text-white flex items-center justify-center gap-2">
+                    <img src={src} alt={label} className="h-4 w-auto" style={{ mixBlendMode: "screen" }} />
+                    {label}
+                  </div>
+                ))}
               </div>
-              <div className="bg-card border border-border p-3 rounded-lg text-center shadow-lg text-sm text-white flex items-center justify-center gap-2">
-                <img src="/x-logo.png" alt="X" className="h-4 w-auto" style={{mixBlendMode: 'screen'}} /> Twitter
+
+              {/* Center: Chip with glow */}
+              <div className="relative flex items-center justify-center">
+                <div className="absolute w-56 h-56 bg-primary/20 rounded-full blur-[50px]" />
+                <ChipEngineGraphic className="relative z-10 w-52 h-52 drop-shadow-[0_0_30px_rgba(6,182,212,0.4)]" />
               </div>
-              <div className="bg-card border border-border p-3 rounded-lg text-center shadow-lg text-sm text-white flex items-center justify-center gap-2">
-                <img src="/discourse-logo.png" alt="Discourse" className="h-4 w-auto" style={{mixBlendMode: 'screen'}} /> Forum
+
+              {/* Right: Score Output */}
+              <div className="flex flex-col items-center gap-2 w-36">
+                <div className="bg-[#0A1428] border-[3px] border-green-500 rounded-2xl px-5 py-3 text-center shadow-[0_0_20px_rgba(34,197,94,0.25)]">
+                  <div className="text-4xl font-black text-white">93</div>
+                </div>
+                <div className="text-xs font-semibold text-white/70 uppercase tracking-widest">Signal Strength</div>
               </div>
             </div>
+          </div>
 
-            {/* Middle Column: Engine — chip graphic */}
+          {/* ── MOBILE layout ── */}
+          <div className="md:hidden flex flex-col items-center gap-6 p-8 py-10">
+            {/* Chip — large and prominent */}
             <div className="relative flex items-center justify-center">
-              <div className="absolute inset-0 bg-primary/15 blur-[40px] rounded-full" />
-              <ChipEngineGraphic className="relative z-10 w-52 h-52 drop-shadow-[0_0_30px_rgba(6,182,212,0.35)]" />
+              <div className="absolute w-64 h-64 bg-primary/20 rounded-full blur-[60px]" />
+              <ChipEngineGraphic className="relative z-10 w-56 h-56 drop-shadow-[0_0_35px_rgba(6,182,212,0.45)]" />
             </div>
 
-            {/* Right Column: Output */}
-            <div className="flex flex-col items-center gap-2 w-36">
-              <div className="bg-[#0A1428] border-[3px] border-green-500 rounded-2xl px-5 py-3 text-center shadow-[0_0_20px_rgba(34,197,94,0.25)]">
-                <div className="text-4xl font-black text-white">93</div>
+            {/* Source tags — compact row */}
+            <div className="flex gap-2 flex-wrap justify-center">
+              {[
+                { src: "/discord-logo.png", label: "Discord" },
+                { src: "/x-logo.png",       label: "Twitter" },
+                { src: "/discourse-logo.png",label: "Forum"   },
+              ].map(({ src, label }) => (
+                <div key={label} className="bg-card border border-border px-3 py-1.5 rounded-lg text-xs text-white flex items-center gap-1.5">
+                  <img src={src} alt={label} className="h-3 w-auto" style={{ mixBlendMode: "screen" }} />
+                  {label}
+                </div>
+              ))}
+            </div>
+
+            {/* Score */}
+            <div className="flex flex-col items-center gap-2">
+              <div className="bg-[#0A1428] border-[3px] border-green-500 rounded-2xl px-6 py-3 text-center shadow-[0_0_20px_rgba(34,197,94,0.25)]">
+                <div className="text-5xl font-black text-white">93</div>
               </div>
               <div className="text-xs font-semibold text-white/70 uppercase tracking-widest">Signal Strength</div>
             </div>
