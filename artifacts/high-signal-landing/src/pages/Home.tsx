@@ -138,7 +138,7 @@ function Problem() {
         className="text-center mb-16"
       >
         <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Web3 communities are full of noise.</h2>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Without a way to filter the signal from the noise, protocols waste resources on the wrong users.</p>
+        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Without a way to filter the signal from the noise, protocols waste precious resources on the wrong users.</p>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
