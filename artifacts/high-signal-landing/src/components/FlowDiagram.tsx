@@ -32,6 +32,7 @@ function rel(el: DOMRect, container: DOMRect) {
 
 export default function FlowDiagram() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const sourcesRowRef = useRef<HTMLDivElement>(null);
   const sourceRefs = useRef<(HTMLDivElement | null)[]>([null, null, null]);
   const chipRef = useRef<HTMLDivElement>(null);
   const scoreRef = useRef<HTMLDivElement>(null);
@@ -46,38 +47,30 @@ export default function FlowDiagram() {
     const container = containerRef.current;
     const chip = chipRef.current;
     const score = scoreRef.current;
-    if (!container || !chip || !score) return;
+    const sourcesRow = sourcesRowRef.current;
+    if (!container || !chip || !score || !sourcesRow) return;
 
     const cRect = container.getBoundingClientRect();
     const chipR = rel(chip.getBoundingClientRect(), cRect);
     const scoreR = rel(score.getBoundingClientRect(), cRect);
+    const sourcesRowR = rel(sourcesRow.getBoundingClientRect(), cRect);
 
     const vertical = cRect.width < HORIZONTAL_THRESHOLD;
     const newLines: LineData[] = [];
     const newDots: DotData[] = [];
 
     if (vertical) {
-      const validSources = sourceRefs.current.filter(Boolean);
-      if (validSources.length === 0) return;
+      const sx = sourcesRowR.midX;
+      const sy = sourcesRowR.bottom;
+      const ex = chipR.midX;
+      const ey = chipR.top;
+      const gapTop = ey - sy;
 
-      const sourceRects = validSources.map((el) =>
-        rel(el!.getBoundingClientRect(), cRect)
-      );
-
-      sourceRects.forEach((srcR) => {
-        const sx = srcR.midX;
-        const sy = srcR.bottom;
-        const ex = chipR.midX;
-        const ey = chipR.top;
-        const gapY = ey - sy;
-
-        newLines.push({
-          d: `M ${sx} ${sy} C ${sx} ${sy + gapY * 0.45}, ${ex} ${ey - gapY * 0.45}, ${ex} ${ey}`,
-        });
-        newDots.push({ cx: sx, cy: sy, r: 3.5 });
+      newLines.push({
+        d: `M ${sx} ${sy} C ${sx} ${sy + gapTop * 0.45}, ${ex} ${ey - gapTop * 0.45}, ${ex} ${ey}`,
       });
-
-      newDots.push({ cx: chipR.midX, cy: chipR.top, r: 4.5 });
+      newDots.push({ cx: sx, cy: sy, r: 4 });
+      newDots.push({ cx: ex, cy: ey, r: 5 });
 
       const bx = chipR.midX;
       const by = chipR.bottom;
@@ -85,8 +78,8 @@ export default function FlowDiagram() {
       newLines.push({
         d: `M ${bx} ${by} C ${bx} ${by + gapBot * 0.45}, ${scoreR.midX} ${scoreR.top - gapBot * 0.45}, ${scoreR.midX} ${scoreR.top}`,
       });
-      newDots.push({ cx: bx, cy: by, r: 4.5 });
-      newDots.push({ cx: scoreR.midX, cy: scoreR.top, r: 3.5 });
+      newDots.push({ cx: bx, cy: by, r: 5 });
+      newDots.push({ cx: scoreR.midX, cy: scoreR.top, r: 4 });
     } else {
       sourceRefs.current.forEach((el) => {
         if (!el) return;
@@ -166,28 +159,30 @@ export default function FlowDiagram() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full rounded-xl border border-border bg-[#050810] shadow-2xl overflow-hidden"
+      className="relative w-full rounded-xl border border-border bg-[#050810] shadow-2xl overflow-hidden py-10"
     >
       <svg
         className="pointer-events-none absolute inset-0 w-full h-full z-[5]"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {lines.map((line, i) => (
-          <path
-            key={i}
-            ref={(el) => {
-              pathRefs.current[i] = el;
-            }}
-            d={line.d}
-            fill="none"
-            stroke="#06B6D4"
-            strokeWidth="1.5"
-            strokeDasharray="5 5"
-            strokeDashoffset="0"
-            opacity="0.7"
-            data-path-length={lengths[i] ?? 0}
-          />
-        ))}
+        {lines.map((line, i) => {
+          const len = lengths[i];
+          return (
+            <path
+              key={i}
+              ref={(el) => {
+                pathRefs.current[i] = el;
+              }}
+              d={line.d}
+              fill="none"
+              stroke="#06B6D4"
+              strokeWidth="1.5"
+              strokeDasharray={len > 0 ? len : undefined}
+              strokeDashoffset={0}
+              opacity="0.7"
+            />
+          );
+        })}
         {dots.map((dot, i) => (
           <circle
             key={`dot-${i}`}
@@ -200,8 +195,11 @@ export default function FlowDiagram() {
         ))}
       </svg>
 
-      <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-8 p-8 sm:px-12 sm:py-10">
-        <div className="flex flex-row sm:flex-col gap-2 sm:gap-5 w-full sm:w-auto justify-center">
+      <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-8 px-8 sm:px-12">
+        <div
+          ref={sourcesRowRef}
+          className="flex flex-row sm:flex-col gap-2 sm:gap-5 w-full sm:w-auto justify-center"
+        >
           {SOURCES.map(({ src, label }, i) => (
             <div
               key={label}
