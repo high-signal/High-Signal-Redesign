@@ -14,6 +14,9 @@
     "typescript": "~5.9.2"
   },
   "dependencies": {
-    "@napi-rs/canvas": "^0.1.96"
+    "@napi-rs/canvas": "^0.1.96",
+    "canvas": "^3.2.1",
+    "playwright-core": "^1.58.2",
+    "pureimage": "^0.4.18"
   }
 }
