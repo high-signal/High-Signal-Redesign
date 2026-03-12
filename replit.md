@@ -91,6 +91,16 @@ Generated Zod schemas from the OpenAPI spec (e.g. `HealthCheckResponse`). Used b
 
 Generated React Query hooks and fetch client from the OpenAPI spec (e.g. `useHealthCheck`, `healthCheck`).
 
+### `artifacts/high-signal-landing` (`@workspace/high-signal-landing`)
+
+React + Vite static landing page (dark navy aesthetic). Key components:
+
+- `src/pages/Home.tsx` — Main landing page with Hero, Problem, Solution, Benefits, HowItWorks, CTA, Footer sections
+- `src/components/FlowDiagram.tsx` — Architecture diagram with dynamic SVG connector lines. Uses `useRef` + `ResizeObserver` to measure element positions and compute bezier paths at runtime. Layout switches between horizontal (sm+) and vertical (mobile) via `flex-col sm:flex-row`. SVG paths include `data-path-length` attributes for future stroke animation.
+- `src/components/ChipEngineGraphic.tsx` — Inline React SVG of the "HIGH SIGNAL ENGINE" chip (M1-style dark matte chip with teal border, metallic text, HS1 debossed stamp). Uses `/logo.png` via `<image href>`.
+- Deployment: static target, build with `pnpm --filter @workspace/high-signal-landing run build`, serves from `dist/public`
+- Color palette: bg #070D1A, primary teal #06B6D4, cards #0A1020
+
 ### `scripts` (`@workspace/scripts`)
 
 Utility scripts package. Each script is a `.ts` file in `src/` with a corresponding npm script in `package.json`. Run scripts via `pnpm --filter @workspace/scripts run <script>`. Scripts can import any workspace package (e.g., `@workspace/db`) by adding it as a dependency in `scripts/package.json`.

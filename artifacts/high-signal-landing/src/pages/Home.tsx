@@ -5,7 +5,7 @@ import {
   Vote, 
   CheckCircle2
 } from "lucide-react";
-import ChipEngineGraphic from "../components/ChipEngineGraphic";
+import FlowDiagram from "../components/FlowDiagram";
 
 // --- Custom UI Components for landing page ---
 const Section = ({ id, children, className = "" }: { id?: string, children: React.ReactNode, className?: string }) => (
@@ -196,53 +196,8 @@ function Solution() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative w-full rounded-xl border border-border bg-[#050810] shadow-2xl overflow-hidden"
         >
-          {/* SVG flow lines — desktop only, absolute overlay */}
-          <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-0 md:opacity-100" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 128 120 C 205 120, 205 200, 278 200" fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
-            <path d="M 128 200 L 278 200"                   fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
-            <path d="M 128 280 C 205 280, 205 200, 278 200" fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
-            <path d="M 442 200 L 505 200"                   fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
-            <circle cx="128" cy="120" r="4" fill="#06B6D4" opacity="0.9"/>
-            <circle cx="128" cy="200" r="4" fill="#06B6D4" opacity="0.9"/>
-            <circle cx="128" cy="280" r="4" fill="#06B6D4" opacity="0.9"/>
-            <circle cx="278" cy="200" r="5" fill="#06B6D4" opacity="0.95"/>
-            <circle cx="505" cy="200" r="4" fill="#06B6D4" opacity="0.9"/>
-          </svg>
-
-          {/* ── Single adaptive layout ── */}
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 p-6 md:h-[400px]">
-
-            {/* Sources: horizontal row on mobile, vertical column on desktop */}
-            <div className="flex flex-row md:flex-col gap-2 md:gap-6 md:w-32 w-full justify-center">
-              {[
-                { src: "/discord-logo.png",  label: "Discord" },
-                { src: "/x-logo.png",        label: "Twitter" },
-                { src: "/discourse-logo.png", label: "Forum"  },
-              ].map(({ src, label }) => (
-                <div key={label} className="bg-card border border-border flex items-center justify-center gap-1.5 md:gap-2 rounded-lg text-white flex-1 md:flex-none py-2 px-3 md:p-3 text-xs md:text-sm shadow-lg">
-                  <img src={src} alt={label} className="h-3.5 md:h-4 w-auto" style={{ mixBlendMode: "screen" }} />
-                  <span>{label}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Chip — with teal glow */}
-            <div className="relative flex items-center justify-center shrink-0">
-              <div className="absolute w-52 h-52 md:w-56 md:h-56 bg-primary/20 rounded-full blur-[50px]" />
-              <ChipEngineGraphic className="relative z-10 w-48 h-48 md:w-52 md:h-52 drop-shadow-[0_0_30px_rgba(6,182,212,0.4)]" />
-            </div>
-
-            {/* Score output */}
-            <div className="flex flex-col items-center gap-2 md:w-36">
-              <div className="bg-[#0A1428] border-[3px] border-green-500 rounded-2xl px-5 py-3 text-center shadow-[0_0_20px_rgba(34,197,94,0.25)]">
-                <div className="text-4xl font-black text-white">93</div>
-              </div>
-              <div className="text-xs font-semibold text-white/70 uppercase tracking-widest">Signal Strength</div>
-            </div>
-
-          </div>
+          <FlowDiagram />
         </motion.div>
       </div>
     </Section>
