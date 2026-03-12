@@ -213,10 +213,10 @@ function Solution() {
             {/* Left Column: Data Sources */}
             <div className="flex flex-col gap-6 w-32">
               <div className="bg-card border border-border p-3 rounded-lg text-center shadow-lg text-sm text-white flex items-center justify-center gap-2">
-                <MessageSquare className="w-4 h-4 text-blue-400" /> Discord
+                <img src="/discord-logo.png" alt="Discord" className="h-4 w-auto" /> Discord
               </div>
               <div className="bg-card border border-border p-3 rounded-lg text-center shadow-lg text-sm text-white flex items-center justify-center gap-2">
-                <Share2 className="w-4 h-4 text-blue-400" /> Twitter
+                <img src="/x-logo.png" alt="X" className="h-4 w-auto" style={{mixBlendMode: 'screen'}} /> X / Twitter
               </div>
               <div className="bg-card border border-border p-3 rounded-lg text-center shadow-lg text-sm text-white flex items-center justify-center gap-2">
                 <Network className="w-4 h-4 text-primary" /> On-chain
