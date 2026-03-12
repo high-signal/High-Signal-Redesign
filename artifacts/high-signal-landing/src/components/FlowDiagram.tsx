@@ -103,17 +103,10 @@ export default function FlowDiagram() {
       const exitY = chipR.midY;
       const entryX = scoreR.left;
       const entryY = scoreR.midY;
-      const exitGap = entryX - exitX;
 
-      if (Math.abs(exitY - entryY) < 2) {
-        newLines.push({
-          d: `M ${exitX} ${exitY} L ${entryX} ${entryY}`,
-        });
-      } else {
-        newLines.push({
-          d: `M ${exitX} ${exitY} C ${exitX + exitGap * 0.4} ${exitY}, ${entryX - exitGap * 0.4} ${entryY}, ${entryX} ${entryY}`,
-        });
-      }
+      newLines.push({
+        d: `M ${exitX} ${exitY} L ${entryX} ${entryY}`,
+      });
       newDots.push({ cx: entryX, cy: entryY, r: 4 });
     }
 
@@ -166,7 +159,7 @@ export default function FlowDiagram() {
         xmlns="http://www.w3.org/2000/svg"
       >
         {lines.map((line, i) => {
-          const len = lengths[i];
+          const len = lengths[i] ?? 0;
           return (
             <path
               key={i}
@@ -177,9 +170,10 @@ export default function FlowDiagram() {
               fill="none"
               stroke="#06B6D4"
               strokeWidth="1.5"
-              strokeDasharray={len > 0 ? len : undefined}
+              strokeDasharray="5 5"
               strokeDashoffset={0}
               opacity="0.7"
+              style={len > 0 ? { "--path-length": len } as React.CSSProperties : undefined}
             />
           );
         })}
