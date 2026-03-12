@@ -323,15 +323,13 @@ function Footer() {
             <span className="text-lg font-bold tracking-tight text-white">High Signal</span>
           </div>
           <p className="text-sm text-muted-foreground text-center md:text-left">
-            Find the voices that matter.<br/>
-            Building the reputation graph for Ethereum.
+            Find the voices that matter.
           </p>
         </div>
         
         <div className="flex gap-8 text-sm font-medium text-muted-foreground">
           <a href="#" className="hover:text-white transition-colors">Twitter</a>
-          <a href="mailto:ad@highsignal.xyz" className="hover:text-white transition-colors">Contact</a>
-          <a href="#" className="hover:text-white transition-colors">Privacy</a>
+          <a href="mailto:info@highsignal.xyz" className="hover:text-white transition-colors">Contact</a>
         </div>
       </div>
       <div className="border-t border-border/50 py-6 text-center text-xs text-muted-foreground/50">
