@@ -7,10 +7,9 @@ id = "artifacts/api-server"
 id = "artifacts/mockup-sandbox"
 
 [deployment]
-router = "application"
-deploymentTarget = "autoscale"
+deploymentTarget = "static"
 build = ["sh", "-c", "BASE_PATH=/ pnpm --filter @workspace/high-signal-landing run build"]
-run = ["sh", "-c", "node server.mjs"]
+publicDir = "artifacts/high-signal-landing/dist/public"
 
 [deployment.postBuild]
 args = ["pnpm", "store", "prune"]
