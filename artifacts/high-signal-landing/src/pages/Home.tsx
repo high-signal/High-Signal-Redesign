@@ -75,7 +75,7 @@ function Hero() {
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">
-            High Signal turns noisy community data into a trusted reputation graph — helping Ethereum protocols identify, reward, and retain their most valuable contributors.
+            High Signal turns noisy community data into a trusted reputation score that helps protocols identify, reward, and retain their most valuable contributors.
           </p>
 
           <div className="flex justify-center">
