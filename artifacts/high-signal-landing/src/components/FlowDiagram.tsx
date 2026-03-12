@@ -7,7 +7,7 @@ const SOURCES = [
   { src: "/discourse-logo.png", label: "Forum" },
 ] as const;
 
-const HORIZONTAL_THRESHOLD = 500;
+const HORIZONTAL_THRESHOLD = 640;
 
 interface LineData {
   d: string;
@@ -170,10 +170,9 @@ export default function FlowDiagram() {
               fill="none"
               stroke="#06B6D4"
               strokeWidth="1.5"
-              strokeDasharray="5 5"
+              strokeDasharray={len > 0 ? len : undefined}
               strokeDashoffset={0}
               opacity="0.7"
-              style={len > 0 ? { "--path-length": len } as React.CSSProperties : undefined}
             />
           );
         })}
