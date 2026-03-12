@@ -6,7 +6,6 @@ import {
   Bot, 
   Coins, 
   Vote, 
-  Activity, 
   MessageSquare, 
   Share2, 
   CheckCircle2, 
@@ -34,7 +33,7 @@ function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Activity className="w-6 h-6 text-primary" />
+          <img src="/logo.png" alt="High Signal" className="w-7 h-7 object-contain" />
           <span className="text-xl font-bold tracking-tight text-white">High Signal</span>
         </div>
         <div className="hidden md:flex items-center gap-8">
@@ -270,7 +269,7 @@ function Solution() {
             <div className="relative">
               <div className="absolute inset-0 bg-primary/20 blur-[30px] rounded-full" />
               <div className="bg-[#0A1020] border border-primary/50 p-6 rounded-xl text-center shadow-[0_0_30px_rgba(0,229,255,0.15)] w-40 relative z-10">
-                <Activity className="w-8 h-8 text-primary mx-auto mb-3" />
+                <img src="/logo.png" alt="High Signal" className="w-8 h-8 object-contain mx-auto mb-3" />
                 <span className="font-bold text-white text-sm">High Signal Engine</span>
               </div>
             </div>
@@ -403,7 +402,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-16 flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex flex-col items-center md:items-start gap-4">
           <div className="flex items-center gap-2">
-            <Activity className="w-5 h-5 text-primary" />
+            <img src="/logo.png" alt="High Signal" className="w-6 h-6 object-contain" />
             <span className="text-lg font-bold tracking-tight text-white">High Signal</span>
           </div>
           <p className="text-sm text-muted-foreground text-center md:text-left">
