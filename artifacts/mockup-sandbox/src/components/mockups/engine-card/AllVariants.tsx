@@ -1,8 +1,6 @@
-import { CircuitChip as CircuitChipCard } from "./CircuitChip";
-import { NeuralPulse as NeuralPulseCard } from "./NeuralPulse";
-import { ChipBlocks as ChipBlocksCard } from "./ChipBlocks";
+import type { ReactNode } from "react";
 
-function VariantCard({ label, children }: { label: string; children: React.ReactNode }) {
+function VariantCard({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="flex flex-col items-center gap-4">
       <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">{label}</span>
