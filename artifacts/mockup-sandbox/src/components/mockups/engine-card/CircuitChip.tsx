@@ -3,7 +3,7 @@ export function CircuitChip() {
     <div className="min-h-screen bg-[#050810] flex items-center justify-center p-8">
       <div className="relative">
         <div className="absolute inset-0 bg-cyan-500/20 blur-[30px] rounded-full" />
-        <div className="bg-[#0A1020] border border-cyan-500/50 p-6 rounded-xl text-center shadow-[0_0_30px_rgba(0,229,255,0.15)] w-48 relative z-10 overflow-hidden">
+        <div className="bg-[#0A1020] border border-cyan-500/50 p-6 rounded-xl text-center shadow-[0_0_30px_rgba(0,229,255,0.15)] w-40 relative z-10 overflow-hidden">
           <svg className="absolute inset-0 w-full h-full opacity-[0.12]" xmlns="http://www.w3.org/2000/svg">
             <rect x="50" y="40" width="92" height="92" rx="6" fill="none" stroke="#06B6D4" strokeWidth="1.5"/>
             <rect x="62" y="52" width="68" height="68" rx="3" fill="none" stroke="#06B6D4" strokeWidth="1"/>

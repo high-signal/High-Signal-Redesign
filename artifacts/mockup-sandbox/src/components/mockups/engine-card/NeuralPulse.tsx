@@ -13,7 +13,7 @@ export function NeuralPulse() {
       `}</style>
       <div className="relative">
         <div className="absolute inset-0 bg-cyan-500/20 blur-[30px] rounded-full" />
-        <div className="bg-[#0A1020] border border-cyan-500/50 p-6 rounded-xl text-center shadow-[0_0_30px_rgba(0,229,255,0.15)] w-48 relative z-10 overflow-hidden">
+        <div className="bg-[#0A1020] border border-cyan-500/50 p-6 rounded-xl text-center shadow-[0_0_30px_rgba(0,229,255,0.15)] w-40 relative z-10 overflow-hidden">
           <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <line x1="40" y1="45" x2="96" y2="70" stroke="#06B6D4" strokeWidth="0.8" opacity="0.2"/>
             <line x1="152" y1="45" x2="96" y2="70" stroke="#06B6D4" strokeWidth="0.8" opacity="0.2"/>
