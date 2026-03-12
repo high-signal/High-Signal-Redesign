@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "wouter";
 import { 
   ArrowRight, 
   Bot, 
@@ -11,7 +9,6 @@ import {
   CheckCircle2, 
   Network
 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 
 // --- Custom UI Components for landing page ---
 const Section = ({ id, children, className = "" }: { id?: string, children: React.ReactNode, className?: string }) => (
@@ -52,33 +49,13 @@ function Navbar() {
 }
 
 function Hero() {
-  const { toast } = useToast();
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setEmail("");
-      toast({
-        title: "Access Request Sent",
-        description: "You're on the list. We'll be in touch soon.",
-      });
-    }, 1000);
-  };
-
   return (
-    <div className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex items-center justify-center min-h-[90vh]">
-      {/* Abstract Background Elements */}
-      <div className="absolute inset-0 z-0 bg-grid-pattern [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)] opacity-30 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-      
+    <div className="relative pt-28 pb-0 md:pt-40 md:pb-0 overflow-hidden flex items-center justify-center min-h-[85vh]">
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-primary/8 rounded-full blur-[140px] pointer-events-none" />
+
       {/* Node graph SVG decoration */}
-      <svg className="absolute inset-0 w-full h-full z-0 opacity-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+      <svg className="absolute inset-0 w-full h-full z-0 opacity-15 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
         <path d="M 200 300 Q 400 200 600 400 T 1000 300" fill="transparent" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="4 4" />
         <path d="M 100 600 Q 300 700 500 500 T 900 600" fill="transparent" stroke="hsl(var(--primary))" strokeWidth="1" opacity="0.5" />
         <circle cx="200" cy="300" r="4" fill="hsl(var(--primary))" />
@@ -87,43 +64,43 @@ function Hero() {
         <circle cx="500" cy="500" r="5" fill="hsl(var(--primary))" />
       </svg>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 md:px-12 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <Badge>Data-driven Community Intelligence</Badge>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-8 leading-tight">
-            Find the voices <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500 text-glow">that matter</span>
+          <Badge>AI-powered community intelligence for Ethereum</Badge>
+
+          <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white leading-[1.05] mb-7">
+            Find the voices<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">that matter</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-            High Signal turns noisy community data into a trusted reputation graph. Help Ethereum protocols identify, reward, and retain their most valuable community members.
+
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">
+            High Signal turns noisy community data into a trusted reputation graph — helping Ethereum protocols identify, reward, and retain their most valuable contributors.
           </p>
 
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-8">
-            <input 
-              type="email" 
-              placeholder="Enter your work email" 
-              className="w-full h-12 px-4 rounded-md bg-card border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-white placeholder:text-muted-foreground"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <button 
-              type="submit" 
-              disabled={isSubmitting}
-              className="w-full sm:w-auto h-12 px-8 font-medium text-primary-foreground bg-primary rounded-md shadow-[0_0_15px_rgba(0,229,255,0.2)] hover:shadow-[0_0_25px_rgba(0,229,255,0.4)] transition-all duration-300 disabled:opacity-70 whitespace-nowrap flex-shrink-0"
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="https://app.highsignal.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center h-13 px-10 py-3.5 text-base font-semibold text-primary-foreground bg-primary rounded-lg shadow-[0_0_20px_rgba(0,229,255,0.25)] hover:shadow-[0_0_35px_rgba(0,229,255,0.45)] transition-all duration-300"
             >
-              {isSubmitting ? "Sending..." : "Get Early Access"}
-            </button>
-          </form>
-
-          <a href="#how-it-works" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-            See how it works <ArrowRight className="w-4 h-4" />
-          </a>
+              Launch App
+            </a>
+            <a
+              href="#problem"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-13 px-8 py-3.5 text-base font-medium text-muted-foreground border border-border rounded-lg hover:text-white hover:border-border/80 transition-all duration-200"
+            >
+              See the problem <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </motion.div>
+
+        {/* Fade-into-next-section gradient */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background to-transparent pointer-events-none" />
       </div>
     </div>
   );
@@ -430,11 +407,11 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <SocialProof />
         <Problem />
         <Solution />
         <Benefits />
         <HowItWorks />
+        <SocialProof />
         <CTA />
       </main>
       <Footer />
