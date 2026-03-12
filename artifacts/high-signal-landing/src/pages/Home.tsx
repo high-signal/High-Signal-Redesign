@@ -216,7 +216,7 @@ function Solution() {
                 <img src="/discord-logo.png" alt="Discord" className="h-4 w-auto" /> Discord
               </div>
               <div className="bg-card border border-border p-3 rounded-lg text-center shadow-lg text-sm text-white flex items-center justify-center gap-2">
-                <img src="/x-logo.png" alt="X" className="h-4 w-auto" style={{mixBlendMode: 'screen'}} /> X / Twitter
+                <img src="/x-logo.png" alt="X" className="h-4 w-auto" style={{mixBlendMode: 'screen'}} /> Twitter
               </div>
               <div className="bg-card border border-border p-3 rounded-lg text-center shadow-lg text-sm text-white flex items-center justify-center gap-2">
                 <Network className="w-4 h-4 text-primary" /> On-chain
