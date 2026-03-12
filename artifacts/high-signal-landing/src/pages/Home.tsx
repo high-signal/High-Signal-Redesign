@@ -183,7 +183,7 @@ function Solution() {
             We aggregate disparate data sources across social platforms, forums, and on-chain activity to build a unified, Sybil-resistant reputation score, using AI sentiment analysis
           </p>
           <ul className="space-y-4">
-            {['Identify true contributors automatically', 'Filter out airdrop farmers and bots', 'Deploy targeted, high-ROI incentives'].map((item, i) => (
+            {['Identify genuine contributors that add real value to discussions', 'Filter out airdrop farmers and bots', 'Deploy targeted, high-ROI incentives'].map((item, i) => (
               <li key={i} className="flex items-center gap-3 text-white">
                 <CheckCircle2 className="w-5 h-5 text-primary" />
                 <span>{item}</span>
