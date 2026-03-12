@@ -7,7 +7,7 @@ const SOURCES = [
   { src: "/discourse-logo.png", label: "Forum" },
 ] as const;
 
-const HORIZONTAL_THRESHOLD = 640;
+const HORIZONTAL_THRESHOLD = 500;
 
 interface LineData {
   d: string;
@@ -42,6 +42,7 @@ export default function FlowDiagram() {
   const [lines, setLines] = useState<LineData[]>([]);
   const [dots, setDots] = useState<DotData[]>([]);
   const [lengths, setLengths] = useState<number[]>([]);
+  const [horizontal, setHorizontal] = useState(true);
 
   const computePaths = useCallback(() => {
     const container = containerRef.current;
@@ -51,15 +52,17 @@ export default function FlowDiagram() {
     if (!container || !chip || !score || !sourcesRow) return;
 
     const cRect = container.getBoundingClientRect();
+    const isHoriz = cRect.width >= HORIZONTAL_THRESHOLD;
+    setHorizontal(isHoriz);
+
     const chipR = rel(chip.getBoundingClientRect(), cRect);
     const scoreR = rel(score.getBoundingClientRect(), cRect);
     const sourcesRowR = rel(sourcesRow.getBoundingClientRect(), cRect);
 
-    const vertical = cRect.width < HORIZONTAL_THRESHOLD;
     const newLines: LineData[] = [];
     const newDots: DotData[] = [];
 
-    if (vertical) {
+    if (!isHoriz) {
       const sx = sourcesRowR.midX;
       const sy = sourcesRowR.bottom;
       const ex = chipR.midX;
@@ -188,10 +191,18 @@ export default function FlowDiagram() {
         ))}
       </svg>
 
-      <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-8 px-8 sm:px-12">
+      <div
+        className={`relative z-10 flex items-center gap-8 px-8 ${
+          horizontal
+            ? "flex-row justify-between px-12"
+            : "flex-col justify-center"
+        }`}
+      >
         <div
           ref={sourcesRowRef}
-          className="flex flex-row sm:flex-col gap-2 sm:gap-5 w-full sm:w-auto justify-center"
+          className={`flex gap-2 justify-center ${
+            horizontal ? "flex-col gap-5 w-auto" : "flex-row w-full"
+          }`}
         >
           {SOURCES.map(({ src, label }, i) => (
             <div
@@ -199,12 +210,16 @@ export default function FlowDiagram() {
               ref={(el) => {
                 sourceRefs.current[i] = el;
               }}
-              className="bg-card border border-border flex items-center justify-center gap-1.5 sm:gap-2 rounded-lg text-white flex-1 sm:flex-none py-2.5 px-4 sm:py-3 sm:px-5 text-xs sm:text-sm shadow-lg sm:min-w-[120px]"
+              className={`bg-card border border-border flex items-center justify-center rounded-lg text-white shadow-lg ${
+                horizontal
+                  ? "gap-2 py-3 px-5 text-sm min-w-[120px]"
+                  : "gap-1.5 py-2.5 px-4 text-xs flex-1"
+              }`}
             >
               <img
                 src={src}
                 alt={label}
-                className="h-3.5 sm:h-4 w-auto"
+                className={`w-auto ${horizontal ? "h-4" : "h-3.5"}`}
                 style={{ mixBlendMode: "screen" }}
                 onLoad={scheduleRecompute}
               />
@@ -217,13 +232,23 @@ export default function FlowDiagram() {
           ref={chipRef}
           className="relative flex items-center justify-center shrink-0"
         >
-          <div className="absolute w-52 h-52 sm:w-56 sm:h-56 bg-primary/20 rounded-full blur-[50px]" />
-          <ChipEngineGraphic className="relative z-10 w-44 h-44 sm:w-52 sm:h-52 drop-shadow-[0_0_30px_rgba(6,182,212,0.4)]" />
+          <div
+            className={`absolute bg-primary/20 rounded-full blur-[50px] ${
+              horizontal ? "w-56 h-56" : "w-52 h-52"
+            }`}
+          />
+          <ChipEngineGraphic
+            className={`relative z-10 drop-shadow-[0_0_30px_rgba(6,182,212,0.4)] ${
+              horizontal ? "w-52 h-52" : "w-44 h-44"
+            }`}
+          />
         </div>
 
         <div
           ref={scoreRef}
-          className="flex flex-col items-center gap-2 sm:w-36"
+          className={`flex flex-col items-center gap-2 ${
+            horizontal ? "w-36" : ""
+          }`}
         >
           <div className="bg-[#0A1428] border-[3px] border-green-500 rounded-2xl px-5 py-3 text-center shadow-[0_0_20px_rgba(34,197,94,0.25)]">
             <div className="text-4xl font-black text-white">93</div>
