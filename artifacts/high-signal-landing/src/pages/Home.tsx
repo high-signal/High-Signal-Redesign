@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { 
-  ArrowRight, 
+  ChevronDown,
   Bot, 
   Coins, 
   Vote, 
@@ -50,9 +50,9 @@ function Navbar() {
 
 function Hero() {
   return (
-    <div className="relative pt-28 pb-0 md:pt-40 md:pb-0 overflow-hidden flex items-center justify-center min-h-[85vh]">
+    <div className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden flex flex-col items-center justify-center">
       {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-primary/8 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-primary/8 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Node graph SVG decoration */}
       <svg className="absolute inset-0 w-full h-full z-0 opacity-15 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
@@ -72,36 +72,28 @@ function Hero() {
         >
           <Badge>AI-powered community intelligence for Ethereum</Badge>
 
-          <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white leading-[1.05] mb-7">
+          <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white leading-[1.05] mb-6">
             Find the voices<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">that matter</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             High Signal turns noisy community data into a trusted reputation graph — helping Ethereum protocols identify, reward, and retain their most valuable contributors.
           </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="https://app.highsignal.xyz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center h-13 px-10 py-3.5 text-base font-semibold text-primary-foreground bg-primary rounded-lg shadow-[0_0_20px_rgba(0,229,255,0.25)] hover:shadow-[0_0_35px_rgba(0,229,255,0.45)] transition-all duration-300"
-            >
-              Launch App
-            </a>
-            <a
-              href="#problem"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-13 px-8 py-3.5 text-base font-medium text-muted-foreground border border-border rounded-lg hover:text-white hover:border-border/80 transition-all duration-200"
-            >
-              See the problem <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
         </motion.div>
-
-        {/* Fade-into-next-section gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background to-transparent pointer-events-none" />
       </div>
+
+      {/* Scroll nudge */}
+      <motion.a
+        href="#problem"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.6 }}
+        className="relative z-10 mt-12 flex flex-col items-center gap-1.5 text-xs font-medium text-muted-foreground/60 hover:text-primary transition-colors duration-200 group"
+      >
+        <span className="tracking-widest uppercase">What's the problem?</span>
+        <ChevronDown className="w-4 h-4 animate-bounce" />
+      </motion.a>
     </div>
   );
 }
@@ -148,7 +140,7 @@ function Problem() {
   ];
 
   return (
-    <Section id="problem" className="relative">
+    <Section id="problem" className="relative !pt-12 md:!pt-16">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
