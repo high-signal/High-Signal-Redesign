@@ -233,9 +233,11 @@ function Solution() {
             </div>
 
             {/* Right Column: Output */}
-            <div className="bg-primary border border-primary p-4 rounded-xl text-center shadow-[0_0_30px_rgba(0,229,255,0.3)] w-36">
-              <div className="text-3xl font-black text-primary-foreground mb-1">98.5</div>
-              <div className="text-xs font-semibold text-primary-foreground/80 uppercase">Reputation Score</div>
+            <div className="flex flex-col items-center gap-2 w-36">
+              <div className="bg-[#0A1428] border-[3px] border-green-500 rounded-2xl px-5 py-3 text-center shadow-[0_0_20px_rgba(34,197,94,0.25)]">
+                <div className="text-4xl font-black text-white">93</div>
+              </div>
+              <div className="text-xs font-semibold text-white/70 uppercase tracking-widest">Signal Strength</div>
             </div>
           </div>
         </motion.div>
