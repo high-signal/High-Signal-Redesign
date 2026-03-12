@@ -43,8 +43,8 @@ function Navbar() {
           <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-white transition-colors">How it works</a>
         </div>
         <div>
-          <a href="#cta" className="inline-flex items-center justify-center h-10 px-6 text-sm font-medium text-primary-foreground bg-primary rounded-md shadow-[0_0_15px_rgba(0,229,255,0.3)] hover:shadow-[0_0_25px_rgba(0,229,255,0.5)] transition-all duration-300">
-            Get Early Access
+          <a href="https://app.highsignal.xyz" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center h-10 px-6 text-sm font-medium text-primary-foreground bg-primary rounded-md shadow-[0_0_15px_rgba(0,229,255,0.3)] hover:shadow-[0_0_25px_rgba(0,229,255,0.5)] transition-all duration-300">
+            Launch App
           </a>
         </div>
       </div>
@@ -376,24 +376,6 @@ function HowItWorks() {
 
 
 function CTA() {
-  const { toast } = useToast();
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setEmail("");
-      toast({
-        title: "Access Request Sent",
-        description: "You're on the list. We'll be in touch soon.",
-      });
-    }, 1000);
-  };
-
   return (
     <Section id="cta" className="relative overflow-hidden">
       <div className="absolute inset-0 bg-primary/5 [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_100%)] pointer-events-none" />
@@ -402,23 +384,14 @@ function CTA() {
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to find your highest-signal contributors?</h2>
         <p className="text-xl text-muted-foreground mb-10">Join Lido, CoW Swap, Aztec and more leading protocols building resilient communities.</p>
         
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto">
-          <input 
-            type="email" 
-            placeholder="Enter your work email" 
-            className="w-full h-14 px-5 rounded-md bg-[#050810] border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-white placeholder:text-muted-foreground text-lg"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <button 
-            type="submit" 
-            disabled={isSubmitting}
-            className="w-full sm:w-auto h-14 px-10 text-lg font-medium text-primary-foreground bg-primary rounded-md shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:shadow-[0_0_30px_rgba(0,229,255,0.5)] transition-all duration-300 disabled:opacity-70 whitespace-nowrap flex-shrink-0"
-          >
-            {isSubmitting ? "Sending..." : "Get Early Access"}
-          </button>
-        </form>
+        <a
+          href="https://app.highsignal.xyz"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center h-14 px-12 text-lg font-medium text-primary-foreground bg-primary rounded-md shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:shadow-[0_0_30px_rgba(0,229,255,0.5)] transition-all duration-300"
+        >
+          Launch App
+        </a>
       </div>
     </Section>
   );
