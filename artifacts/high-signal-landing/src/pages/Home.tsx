@@ -374,52 +374,6 @@ function HowItWorks() {
   );
 }
 
-function Testimonials() {
-  return (
-    <Section className="bg-card/30 border-y border-border/50">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-[#050810] border border-border p-8 rounded-2xl relative"
-        >
-          <div className="text-4xl text-primary/30 font-serif absolute top-6 left-6">"</div>
-          <p className="text-white text-lg relative z-10 italic mb-8 pt-4">
-            High Signal finally gave us visibility into who was actually creating value vs who was just farming. We completely redesigned our incentive programs based on their reputation graph.
-          </p>
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-blue-900/50 flex items-center justify-center text-blue-400 font-bold">L</div>
-            <div>
-              <div className="text-white font-bold">Core Team Member</div>
-              <div className="text-sm text-muted-foreground">Lido Finance</div>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="bg-[#050810] border border-border p-8 rounded-2xl relative"
-        >
-          <div className="text-4xl text-primary/30 font-serif absolute top-6 left-6">"</div>
-          <p className="text-white text-lg relative z-10 italic mb-8 pt-4">
-            The integration was seamless. Being able to cross-reference Discord activity directly to on-chain voting behavior is a superpower for governance.
-          </p>
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-purple-900/50 flex items-center justify-center text-purple-400 font-bold">C</div>
-            <div>
-              <div className="text-white font-bold">Governance Lead</div>
-              <div className="text-sm text-muted-foreground">CoW Swap</div>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </Section>
-  );
-}
 
 function CTA() {
   const { toast } = useToast();
@@ -509,7 +463,6 @@ export default function Home() {
         <Solution />
         <Benefits />
         <HowItWorks />
-        <Testimonials />
         <CTA />
       </main>
       <Footer />
