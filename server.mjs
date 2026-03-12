@@ -5,11 +5,22 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const PORT = process.env.PORT || 3000;
+const PORT = parseInt(process.env.PORT, 10) || 3000;
 const STATIC_DIR = join(__dirname, "artifacts/high-signal-landing/dist/public");
 
+console.log(`[server.mjs] Starting up...`);
+console.log(`[server.mjs] PORT=${PORT}`);
+console.log(`[server.mjs] STATIC_DIR=${STATIC_DIR}`);
+
+try {
+  await stat(STATIC_DIR);
+  console.log(`[server.mjs] Static directory exists`);
+} catch {
+  console.error(`[server.mjs] WARNING: Static directory not found at ${STATIC_DIR}`);
+}
+
 const MIME = {
-  ".html": "text/html",
+  ".html": "text/html; charset=utf-8",
   ".js":   "application/javascript",
   ".mjs":  "application/javascript",
   ".css":  "text/css",
@@ -21,6 +32,7 @@ const MIME = {
   ".woff": "font/woff",
   ".woff2":"font/woff2",
   ".json": "application/json",
+  ".webp": "image/webp",
 };
 
 async function serveFile(filePath, res) {
@@ -36,7 +48,7 @@ async function serveFile(filePath, res) {
   return true;
 }
 
-createServer(async (req, res) => {
+const server = createServer(async (req, res) => {
   const url = new URL(req.url, `http://localhost`);
   let pathname = decodeURIComponent(url.pathname);
 
@@ -49,8 +61,16 @@ createServer(async (req, res) => {
   const fallback = join(STATIC_DIR, "index.html");
   if (await serveFile(fallback, res)) return;
 
-  res.writeHead(404);
+  res.writeHead(404, { "Content-Type": "text/plain" });
   res.end("Not found");
-}).listen(PORT, "0.0.0.0", () => {
-  console.log(`Serving on port ${PORT}`);
+});
+
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`[server.mjs] Server listening on 0.0.0.0:${PORT}`);
+  console.log(`[server.mjs] Ready to accept connections`);
+});
+
+server.on("error", (err) => {
+  console.error(`[server.mjs] Server error:`, err);
+  process.exit(1);
 });
