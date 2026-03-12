@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { 
-  ChevronDown,
   Bot, 
   Coins, 
   Vote, 
@@ -70,30 +69,20 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <Badge>AI-powered community intelligence for Ethereum</Badge>
-
           <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white leading-[1.05] mb-6">
             Find the voices<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">that matter</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">
             High Signal turns noisy community data into a trusted reputation graph — helping Ethereum protocols identify, reward, and retain their most valuable contributors.
           </p>
+
+          <div className="flex justify-center">
+            <Badge>AI-powered community intelligence</Badge>
+          </div>
         </motion.div>
       </div>
-
-      {/* Scroll nudge */}
-      <motion.a
-        href="#problem"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.6 }}
-        className="relative z-10 mt-12 flex flex-col items-center gap-1.5 text-xs font-medium text-muted-foreground/60 hover:text-primary transition-colors duration-200 group"
-      >
-        <span className="tracking-widest uppercase">What's the problem?</span>
-        <ChevronDown className="w-4 h-4 animate-bounce" />
-      </motion.a>
     </div>
   );
 }
