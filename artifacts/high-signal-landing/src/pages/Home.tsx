@@ -6,7 +6,7 @@ import {
   CheckCircle2
 } from "lucide-react";
 import FlowDiagram from "../components/FlowDiagram";
-import SignalShowcase from "../components/SignalShowcase";
+import AnimatedSignalPath from "../components/AnimatedSignalPath";
 
 // --- Custom UI Components for landing page ---
 const Section = ({ id, children, className = "" }: { id?: string, children: React.ReactNode, className?: string }) => (
@@ -52,15 +52,13 @@ function Hero() {
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-primary/8 rounded-full blur-[140px] pointer-events-none" />
 
-      {/* Node graph SVG decoration */}
-      <svg className="absolute inset-0 w-full h-full z-0 opacity-15 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 200 300 Q 400 200 600 400 T 1000 300" fill="transparent" stroke="hsl(var(--primary))" strokeWidth="1" strokeDasharray="4 4" />
-        <path d="M 100 600 Q 300 700 500 500 T 900 600" fill="transparent" stroke="hsl(var(--primary))" strokeWidth="1" opacity="0.5" />
-        <circle cx="200" cy="300" r="4" fill="hsl(var(--primary))" />
-        <circle cx="600" cy="400" r="6" fill="hsl(var(--primary))" className="animate-pulse" />
-        <circle cx="1000" cy="300" r="4" fill="hsl(var(--primary))" />
-        <circle cx="500" cy="500" r="5" fill="hsl(var(--primary))" />
-      </svg>
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <AnimatedSignalPath
+          d="M 20 80 Q 250 10 500 120 T 980 70"
+          width={1000}
+          height={300}
+        />
+      </div>
 
       <div className="relative z-10 w-full max-w-5xl mx-auto px-6 md:px-12 text-center">
         <motion.div
@@ -349,7 +347,6 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <SignalShowcase />
         <Problem />
         <Solution />
         <Benefits />
