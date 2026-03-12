@@ -197,13 +197,26 @@ function Solution() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="relative h-[400px] w-full rounded-xl border border-border bg-[#050810] p-6 shadow-2xl flex items-center justify-center"
         >
-          {/* Connecting SVG lines */}
+          {/* Connecting SVG lines — hero-style teal dashed flow */}
           <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 120 100 C 200 100, 200 200, 280 200" fill="none" stroke="hsl(var(--border))" strokeWidth="2" strokeDasharray="4 4" />
-            <path d="M 120 200 C 200 200, 200 200, 280 200" fill="none" stroke="hsl(var(--border))" strokeWidth="2" strokeDasharray="4 4" />
-            <path d="M 120 300 C 200 300, 200 200, 280 200" fill="none" stroke="hsl(var(--border))" strokeWidth="2" strokeDasharray="4 4" />
-            
-            <path d="M 440 200 L 520 200" fill="none" stroke="hsl(var(--primary))" strokeWidth="3" className="drop-shadow-[0_0_5px_rgba(0,229,255,0.8)]" />
+            {/* Left: source cards → engine */}
+            <path d="M 128 120 C 205 120, 205 200, 278 200" fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
+            <path d="M 128 200 L 278 200"                   fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
+            <path d="M 128 280 C 205 280, 205 200, 278 200" fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
+
+            {/* Right: engine → score */}
+            <path d="M 442 200 L 505 200" fill="none" stroke="#06B6D4" strokeWidth="1.5" strokeDasharray="5 5" opacity="0.7"/>
+
+            {/* Glowing dots at source endpoints */}
+            <circle cx="128" cy="120" r="4" fill="#06B6D4" opacity="0.9"/>
+            <circle cx="128" cy="200" r="4" fill="#06B6D4" opacity="0.9"/>
+            <circle cx="128" cy="280" r="4" fill="#06B6D4" opacity="0.9"/>
+
+            {/* Convergence dot at engine input */}
+            <circle cx="278" cy="200" r="5" fill="#06B6D4" opacity="0.95"/>
+
+            {/* Dot at score input */}
+            <circle cx="505" cy="200" r="4" fill="#06B6D4" opacity="0.9"/>
           </svg>
 
           <div className="relative w-full h-full flex items-center justify-between z-10">
