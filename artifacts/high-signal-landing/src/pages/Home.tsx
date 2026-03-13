@@ -328,7 +328,7 @@ function Footer() {
         </div>
         
         <div className="flex gap-8 text-sm font-medium text-muted-foreground">
-          <a href="#" className="hover:text-white transition-colors">Twitter</a>
+          <a href="https://x.com/HighSignalxyz" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Twitter</a>
           <a href="mailto:info@highsignal.xyz" className="hover:text-white transition-colors">Contact</a>
         </div>
       </div>
