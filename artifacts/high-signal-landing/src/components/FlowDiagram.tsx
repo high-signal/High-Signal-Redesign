@@ -245,15 +245,17 @@ export default function FlowDiagram() {
         </div>
 
         <div
-          ref={scoreRef}
           className={`flex flex-col items-center gap-2 ${
             horizontal ? "w-36" : ""
           }`}
         >
-          <div className="bg-[#0A1428] border-[3px] border-green-500 rounded-2xl px-5 py-3 text-center shadow-[0_0_20px_rgba(34,197,94,0.25)]">
+          <div
+            ref={scoreRef}
+            className="bg-[#0A1428] border-[3px] border-green-500 rounded-2xl px-5 py-3 text-center shadow-[0_0_20px_rgba(34,197,94,0.25)]"
+          >
             <div className="text-4xl font-black text-white">93</div>
           </div>
-          <div className="text-xs font-semibold text-white/70 uppercase tracking-widest">
+          <div className="text-xs font-semibold text-white/70 uppercase tracking-widest text-center">
             Signal Strength
           </div>
         </div>
