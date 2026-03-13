@@ -35,7 +35,7 @@ export default function AnimatedSignalPath({ d, width = 600, height = 300 }: Ani
       </defs>
 
       {allPaths.map((pathD, i) => {
-        const dur = 3 + i * 0.7;
+        const dur = 6 + i * 1.2;
         const trailAnimName = `etrail-${uid}-${i}`;
         return (
           <g key={i}>
@@ -104,20 +104,20 @@ export default function AnimatedSignalPath({ d, width = 600, height = 300 }: Ani
                   strokeDasharray="20 1000"
                   strokeDashoffset="0"
                   style={{
-                    animation: `${trailAnimName}-b 4.5s ease-in-out infinite`,
-                    animationDelay: "1.5s",
+                    animation: `${trailAnimName}-b 9s ease-in-out infinite`,
+                    animationDelay: "3s",
                   }}
                 />
                 <circle r="3" fill={`url(#${gradId})`} filter={`url(#${glowId})`} opacity="0.6">
                   <animateMotion
-                    dur="4.5s"
+                    dur="9s"
                     repeatCount="indefinite"
                     path={pathD}
                     keyPoints="0;1"
                     keyTimes="0;1"
                     calcMode="spline"
                     keySplines="0.42 0 0.58 1"
-                    begin="1.5s"
+                    begin="3s"
                   />
                 </circle>
               </>
