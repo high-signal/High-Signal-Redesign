@@ -347,7 +347,7 @@ export default function Home() {
         <Hero />
         <Problem />
         <Solution />
-        <Benefits />
+        {/* <Benefits /> */}
         <HowItWorks />
         <SocialProof />
         <CTA />
