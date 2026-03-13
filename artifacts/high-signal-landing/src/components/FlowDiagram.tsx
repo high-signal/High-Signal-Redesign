@@ -192,10 +192,10 @@ export default function FlowDiagram() {
       </svg>
 
       <div
-        className={`relative z-10 flex items-center gap-8 px-8 ${
+        className={`relative z-10 flex items-center gap-6 ${
           horizontal
-            ? "flex-row justify-between px-12"
-            : "flex-col justify-center"
+            ? "flex-row justify-between px-10"
+            : "flex-col justify-center px-6"
         }`}
       >
         <div
@@ -244,18 +244,14 @@ export default function FlowDiagram() {
           />
         </div>
 
-        <div
-          className={`flex flex-col items-center gap-2 ${
-            horizontal ? "w-36" : ""
-          }`}
-        >
+        <div className="flex flex-col items-center gap-2">
           <div
             ref={scoreRef}
-            className="bg-[#0A1428] border-[3px] border-green-500 rounded-2xl px-5 py-3 text-center shadow-[0_0_20px_rgba(34,197,94,0.25)]"
+            className="bg-[#0A1428] border-[3px] border-green-500 rounded-2xl px-6 py-4 text-center shadow-[0_0_20px_rgba(34,197,94,0.25)]"
           >
-            <div className="text-4xl font-black text-white">93</div>
+            <div className="text-4xl font-black text-white leading-none">93</div>
           </div>
-          <div className="text-xs font-semibold text-white/70 uppercase tracking-widest text-center">
+          <div className="text-[10px] font-semibold text-white/70 uppercase tracking-[0.15em] text-center whitespace-nowrap">
             Signal Strength
           </div>
         </div>
