@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useState, useCallback, useId } from "react";
+import { useRef, useLayoutEffect, useState, useCallback } from "react";
 import ChipEngineGraphic from "./ChipEngineGraphic";
 
 const SOURCES = [
@@ -31,7 +31,6 @@ function rel(el: DOMRect, container: DOMRect) {
 }
 
 export default function FlowDiagram() {
-  const uid = useId().replace(/:/g, "");
   const containerRef = useRef<HTMLDivElement>(null);
   const sourcesRowRef = useRef<HTMLDivElement>(null);
   const sourceRefs = useRef<(HTMLDivElement | null)[]>([null, null, null]);
@@ -162,97 +161,24 @@ export default function FlowDiagram() {
         className="pointer-events-none absolute inset-0 w-full h-full z-[5]"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <defs>
-          <filter id={`fg-${uid}`}>
-            <feGaussianBlur stdDeviation="5" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <radialGradient id={`fp-${uid}`}>
-            <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="40%" stopColor="#06B6D4" />
-            <stop offset="100%" stopColor="#06B6D4" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-
         {lines.map((line, i) => {
           const len = lengths[i] ?? 0;
-          const dur = 5 + i * 0.8;
-          const trailAnim = `fdtrail-${uid}-${i}`;
           return (
-            <g key={i}>
-              <path
-                ref={(el) => {
-                  pathRefs.current[i] = el;
-                }}
-                d={line.d}
-                fill="none"
-                stroke="#06B6D4"
-                strokeWidth="1.5"
-                strokeDasharray={len > 0 ? len : undefined}
-                strokeDashoffset={0}
-                opacity="0.35"
-              />
-
-              {len > 0 && (
-                <>
-                  <path
-                    d={line.d}
-                    fill="none"
-                    stroke="#06B6D4"
-                    strokeWidth="2.5"
-                    opacity="0.3"
-                    strokeLinecap="round"
-                    filter={`url(#fg-${uid})`}
-                    strokeDasharray="25 1000"
-                    style={{
-                      animation: `${trailAnim} ${dur}s ease-in-out infinite`,
-                    }}
-                  />
-
-                  <circle r="3.5" fill={`url(#fp-${uid})`} filter={`url(#fg-${uid})`} opacity="0.8">
-                    <animateMotion
-                      dur={`${dur}s`}
-                      repeatCount="indefinite"
-                      path={line.d}
-                      keyPoints="0;1"
-                      keyTimes="0;1"
-                      calcMode="spline"
-                      keySplines="0.42 0 0.58 1"
-                    />
-                  </circle>
-
-                  <circle r="2" fill="#ffffff" opacity="0.85">
-                    <animateMotion
-                      dur={`${dur}s`}
-                      repeatCount="indefinite"
-                      path={line.d}
-                      keyPoints="0;1"
-                      keyTimes="0;1"
-                      calcMode="spline"
-                      keySplines="0.42 0 0.58 1"
-                    />
-                  </circle>
-
-                  <circle r="6" fill="none" stroke="#06B6D4" strokeWidth="0.5" opacity="0.25" filter={`url(#fg-${uid})`}>
-                    <animateMotion
-                      dur={`${dur}s`}
-                      repeatCount="indefinite"
-                      path={line.d}
-                      keyPoints="0;1"
-                      keyTimes="0;1"
-                      calcMode="spline"
-                      keySplines="0.42 0 0.58 1"
-                    />
-                  </circle>
-                </>
-              )}
-            </g>
+            <path
+              key={i}
+              ref={(el) => {
+                pathRefs.current[i] = el;
+              }}
+              d={line.d}
+              fill="none"
+              stroke="#06B6D4"
+              strokeWidth="1.5"
+              strokeDasharray={len > 0 ? len : undefined}
+              strokeDashoffset={0}
+              opacity="0.7"
+            />
           );
         })}
-
         {dots.map((dot, i) => (
           <circle
             key={`dot-${i}`}
@@ -263,17 +189,6 @@ export default function FlowDiagram() {
             opacity="0.9"
           />
         ))}
-
-        <style>{
-          lines.map((_, i) => {
-            const trailAnim = `fdtrail-${uid}-${i}`;
-            return `
-              @keyframes ${trailAnim} {
-                0% { stroke-dashoffset: 1025; }
-                100% { stroke-dashoffset: -1025; }
-              }`;
-          }).join("\n")
-        }</style>
       </svg>
 
       <div
