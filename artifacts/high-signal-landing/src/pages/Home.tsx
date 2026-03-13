@@ -349,7 +349,7 @@ export default function Home() {
         <Solution />
         {/* <Benefits /> */}
         <HowItWorks />
-        <SocialProof />
+        {/* <SocialProof /> */}
         <CTA />
       </main>
       <Footer />
